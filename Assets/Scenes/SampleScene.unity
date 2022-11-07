@@ -2109,6 +2109,7 @@ MonoBehaviour:
   _inputField: {fileID: 568641285}
   _connectSprite: {fileID: 21300000, guid: 3494dc956dfd7174abc07060940a2848, type: 3}
   _disconnectSprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+  _textHolder: {fileID: 480407533}
 --- !u!1 &1972958909
 GameObject:
   m_ObjectHideFlags: 0

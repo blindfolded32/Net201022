@@ -566,8 +566,11 @@
         </e>
         <e p="ProjectData" t="Include">
           <e p="Scripts" t="Include">
-            <e p="Authorization.cs" t="Include" />
-            <e p="ConnectionPanel.cs" t="Include" />
+            <e p="AccountDataWindow.cs" t="Include" />
+            <e p="CreateAccountWindow.cs" t="Include" />
+            <e p="GameStartWindow.cs" t="Include" />
+            <e p="PlayFabAccountManager.cs" t="Include" />
+            <e p="SingInWindow.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">

@@ -21,6 +21,8 @@ namespace ProjectData.Scripts
         [SerializeField] private Text _statusText;
         [SerializeField] private Sprite _loadSprite;
         [SerializeField] private Image _statusImage;
+        [SerializeField] private Canvas _catalogCanvas;
+        private CatalogHolder _catalogHolder;
 
         protected string _login;
         protected string _password;
@@ -30,8 +32,8 @@ namespace ProjectData.Scripts
         private void Start()
         {
             SubcribeUIElements();
+            _catalogHolder = FindObjectOfType<CatalogHolder>();
         }
-
         private void UpdateLogin(string login)
         {
             _login = login;
@@ -40,16 +42,6 @@ namespace ProjectData.Scripts
         {
             _password = password;
         }
-        
-        protected  void StartLoginCoroutine()
-        {
-            _statusImage.enabled = true;
-            _statusImage.sprite = _loadSprite;
-            _statusText.text = "<color=white>Connecting</color>";
-            IsLogginInProgress = true;
-            StartCoroutine(LoginProgressCoroutine());
-        }
-
         private IEnumerator LoginProgressCoroutine()
         {
             while (IsLogginInProgress)
@@ -61,8 +53,20 @@ namespace ProjectData.Scripts
             _statusImage.transform.rotation = Quaternion.identity;
             _statusImage.enabled = false;
         }
-        
 
+        private void ShowCatalogWindow()
+        {
+            _catalogHolder.Init();
+            _catalogCanvas.enabled = true;
+        }
+        protected  void StartLoginCoroutine()
+        {
+            _statusImage.enabled = true;
+            _statusImage.sprite = _loadSprite;
+            _statusText.text = "<color=white>Connecting</color>";
+            IsLogginInProgress = true;
+            StartCoroutine(LoginProgressCoroutine());
+        }
         protected virtual void OpenStartWindow()
         {
             _startWindowCanvas.enabled = true;
@@ -79,7 +83,7 @@ namespace ProjectData.Scripts
             _statusText.text = error.ToString();
         }
 
-        protected void Success(LoginResult result)
+        protected virtual void Success(LoginResult result)
         {
             Debug.Log(result.PlayFabId);
             Debug.Log((string)result.CustomData);
@@ -87,6 +91,7 @@ namespace ProjectData.Scripts
             PhotonNetwork.NickName = result.PlayFabId;
             _statusText.color = Color.green;
             _statusText.text = $"Player: {result.PlayFabId} \nIP: {(string) result.CustomData}";
+            ShowCatalogWindow();
         }
         
         

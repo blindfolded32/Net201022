@@ -44,5 +44,10 @@ namespace ProjectData.Scripts
             _emailField.onValueChanged.AddListener(UpdateEmail);
             _createAccountButton.onClick.AddListener(CreateAccount);
         }
+        protected override void Success(LoginResult result)
+        {
+            base.Success(result);
+            _canvas.enabled = false;
+        }
     }
 }

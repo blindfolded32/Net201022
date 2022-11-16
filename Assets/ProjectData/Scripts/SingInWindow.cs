@@ -67,5 +67,12 @@ namespace ProjectData.Scripts
             _loginField.text = "";
             _passwordField.text = "";
         }
+
+        protected override void Success(LoginResult result)
+        {
+            base.Success(result);
+            _canvas.enabled = false;
+        }
+
     }
 }

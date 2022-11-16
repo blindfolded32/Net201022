@@ -1,0 +1,80 @@
+{
+  "CatalogVersion": "1.0",
+  "Catalog": [
+    {
+      "ItemId": "100",
+      "ItemClass": "currency",
+      "CatalogVersion": "1.0",
+      "DisplayName": "Gold",
+      "Description": null,
+      "VirtualCurrencyPrices": {
+        "GC": 1
+      },
+      "RealCurrencyPrices": null,
+      "Tags": [
+        "gold"
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": true,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "200",
+      "ItemClass": "Test",
+      "CatalogVersion": "1.0",
+      "DisplayName": "Bread",
+      "Description": null,
+      "VirtualCurrencyPrices": {
+        "TV": 20
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "TestCurrency"
+      ],
+      "CustomData": null,
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": true,
+      "IsTradable": false,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    }
+  ],
+  "DropTables": [
+    {
+      "TableId": "CurrencyDrop",
+      "Nodes": [
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "100",
+          "Weight": 10
+        },
+        {
+          "ResultItemType": "ItemId",
+          "ResultItem": "200",
+          "Weight": 1
+        }
+      ]
+    }
+  ]
+}

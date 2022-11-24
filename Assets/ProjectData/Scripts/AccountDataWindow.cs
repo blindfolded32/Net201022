@@ -8,6 +8,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ProjectData.Scripts
@@ -91,7 +92,9 @@ namespace ProjectData.Scripts
             PhotonNetwork.NickName = result.PlayFabId;
             _statusText.color = Color.green;
             _statusText.text = $"Player: {result.PlayFabId} \nIP: {(string) result.CustomData}";
-            ShowCatalogWindow();
+
+            SceneManager.LoadScene(1);
+            //ShowCatalogWindow();
         }
         
         

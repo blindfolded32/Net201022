@@ -10,6 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/B0177439-2BF4-41F5-9388-585F8E74649D/04/acc61b6b/PhotonPeer.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -22,6 +25,14 @@
         <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/CreateAccountWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/AccountDataWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/CatalogHolder.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/CharacterView.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/PlayerCharacterView.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/ConstantsForPlayFab.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/RoomButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/PlayersCreatorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/RoomView.cs" />
+        <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Code/PhotonNetwork.cs" />
+        <option value="$PROJECT_DIR$/Assets/ProjectData/Scripts/LobbyManager.cs" />
       </list>
     </option>
   </component>
@@ -48,10 +59,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8564">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="8564" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -70,7 +81,10 @@
       <workItem from="1668097249157" duration="6400000" />
       <workItem from="1668160903114" duration="1315000" />
       <workItem from="1668447614328" duration="4779000" />
-      <workItem from="1668620247788" duration="2723000" />
+      <workItem from="1668620247788" duration="2806000" />
+      <workItem from="1669819844993" duration="2120000" />
+      <workItem from="1669888410774" duration="909000" />
+      <workItem from="1669889371975" duration="1310000" />
     </task>
     <servers />
   </component>
@@ -83,38 +97,42 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1234" height="378" key="GridCell.Tab.0.bottom" timestamp="1668452732544">
+    <state width="570" height="464" key="DebuggerActiveHint" timestamp="1669890107812">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.0.bottom/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.0.center" timestamp="1668452732544">
+    <state width="570" height="464" key="DebuggerActiveHint/0.0.2560.1050@0.0.2560.1050" timestamp="1669890107812" />
+    <state width="1234" height="375" key="GridCell.Tab.0.bottom" timestamp="1669889502442">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.0.center/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.0.left" timestamp="1668452732544">
+    <state width="1234" height="375" key="GridCell.Tab.0.bottom/0.0.2560.1050@0.0.2560.1050" timestamp="1669889502442" />
+    <state width="1234" height="375" key="GridCell.Tab.0.center" timestamp="1669889502441">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.0.left/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.0.right" timestamp="1668452732544">
+    <state width="1234" height="375" key="GridCell.Tab.0.center/0.0.2560.1050@0.0.2560.1050" timestamp="1669889502441" />
+    <state width="1234" height="375" key="GridCell.Tab.0.left" timestamp="1669889502441">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.0.right/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.1.bottom" timestamp="1668452732544">
+    <state width="1234" height="375" key="GridCell.Tab.0.left/0.0.2560.1050@0.0.2560.1050" timestamp="1669889502441" />
+    <state width="1234" height="375" key="GridCell.Tab.0.right" timestamp="1669889502441">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.1.bottom/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.1.center" timestamp="1668452732544">
+    <state width="1234" height="375" key="GridCell.Tab.0.right/0.0.2560.1050@0.0.2560.1050" timestamp="1669889502441" />
+    <state width="1234" height="375" key="GridCell.Tab.1.bottom" timestamp="1669889700573">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.1.center/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.1.left" timestamp="1668452732544">
+    <state width="1234" height="375" key="GridCell.Tab.1.bottom/0.0.2560.1050@0.0.2560.1050" timestamp="1669889700573" />
+    <state width="1234" height="375" key="GridCell.Tab.1.center" timestamp="1669889700573">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.1.left/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
-    <state width="1234" height="378" key="GridCell.Tab.1.right" timestamp="1668452732544">
+    <state width="1234" height="375" key="GridCell.Tab.1.center/0.0.2560.1050@0.0.2560.1050" timestamp="1669889700573" />
+    <state width="1234" height="375" key="GridCell.Tab.1.left" timestamp="1669889700573">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
-    <state width="1234" height="378" key="GridCell.Tab.1.right/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732544" />
+    <state width="1234" height="375" key="GridCell.Tab.1.left/0.0.2560.1050@0.0.2560.1050" timestamp="1669889700573" />
+    <state width="1234" height="375" key="GridCell.Tab.1.right" timestamp="1669889700573">
+      <screen x="0" y="0" width="2560" height="1050" />
+    </state>
+    <state width="1234" height="375" key="GridCell.Tab.1.right/0.0.2560.1050@0.0.2560.1050" timestamp="1669889700573" />
     <state width="1234" height="378" key="GridCell.Tab.2.bottom" timestamp="1668452732545">
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
@@ -147,5 +165,37 @@
       <screen x="0" y="0" width="2560" height="1050" />
     </state>
     <state width="1234" height="378" key="GridCell.Tab.3.right/0.0.2560.1050@0.0.2560.1050" timestamp="1668452732545" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ProjectData/Scripts/RoomView.cs</url>
+          <line>47</line>
+          <properties documentPath="C:\Users\1\Documents\GitHub\Net201022\Assets\ProjectData\Scripts\RoomView.cs" initialLine="47">
+            <startOffsets>
+              <option value="1634" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1727" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/ProjectData/Scripts/RoomButton.cs</url>
+          <line>33</line>
+          <properties documentPath="C:\Users\1\Documents\GitHub\Net201022\Assets\ProjectData\Scripts\RoomButton.cs" initialLine="33">
+            <startOffsets>
+              <option value="1075" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1142" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

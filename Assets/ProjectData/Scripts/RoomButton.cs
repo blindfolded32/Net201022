@@ -31,22 +31,22 @@ public class RoomButton : MonoBehaviour, IPointerClickHandler
     {
         RoomInfo = roomInfo;
 
-        if(RoomInfo.CustomProperties.ContainsKey(LobbyManager.OWNER))
+        if(RoomInfo.CustomProperties.ContainsKey(ConstantsForPhoton.OWNER))
         {
-            _ownerName = RoomInfo.CustomProperties[LobbyManager.OWNER].ToString();
+            _ownerName = RoomInfo.CustomProperties[ConstantsForPhoton.OWNER].ToString();
             _roomOwner.text = $"Owner: {_ownerName}";
         }
 
-        if(RoomInfo.CustomProperties.ContainsKey(LobbyManager.PASSWORD))
+        if(RoomInfo.CustomProperties.ContainsKey(ConstantsForPhoton.PASSWORD))
         {
             RoomType = RoomTypes.PrivatByPassword;
-            _password = RoomInfo.CustomProperties[LobbyManager.PASSWORD].ToString();
+            _password = RoomInfo.CustomProperties[ConstantsForPhoton.PASSWORD].ToString();
             _idleColor = _passwordColor;
         } 
-        else if (RoomInfo.CustomProperties.ContainsKey(LobbyManager.FRIENDS))
+        else if (RoomInfo.CustomProperties.ContainsKey(ConstantsForPhoton.FRIENDS))
         {
             RoomType = RoomTypes.PrivatByNickname;
-            FriendsList = (string[])RoomInfo.CustomProperties[LobbyManager.FRIENDS];
+            FriendsList = (string[])RoomInfo.CustomProperties[ConstantsForPhoton.FRIENDS];
             _idleColor = _friendsColor;
         }
         else

@@ -1,6 +1,7 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
+using PlayFab.ClientModels;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -17,22 +18,34 @@ public class RoomView : MonoBehaviour
     [SerializeField] private Button _startGameButton;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private List<PlayerSlotView> _playerInRoomViews;
+    [SerializeField] private List<PlayerCharacterView> _characterViews;
 
     private bool _isVisible = true;
     private bool _isOpen = true;
     private string _roomOwner;
     private string _playerName;
+    private PlayerCharacterView _selectedCharacter;
     private Dictionary<string, PlayerSlotView> _slotsByPlayers = new Dictionary<string, PlayerSlotView>();
 
 
     public Button CloseRoomButton => _closeRoomButton;
     public Button HideRoomButton => _hideRoomButton;
     public Button StartGameButton => _startGameButton;
+    public Toggle ReadyToggle => _readyToggle;
+    public PlayerCharacterView SelectedCharacter => _selectedCharacter;
+
+    private void Start()
+    {
+        for (int i = 0; i < _characterViews.Count; i++)
+        {
+            _characterViews[i].OnClickCharacterView += SelectPickedCharacter;
+        }
+    }
 
     public void ShowRoom()
     {
         _nameText.text = "Room: " + PhotonNetwork.CurrentRoom.Name;
-        _roomOwner = PhotonNetwork.CurrentRoom.CustomProperties[LobbyManager.OWNER].ToString();
+        _roomOwner = PhotonNetwork.CurrentRoom.CustomProperties[ConstantsForPhoton.OWNER].ToString();
         _playerName = PhotonNetwork.LocalPlayer.NickName;
 
         if (_roomOwner != _playerName)
@@ -49,6 +62,45 @@ public class RoomView : MonoBehaviour
         }
 
         _readyToggle.onValueChanged.AddListener(ChangeLocalReadyStatus);
+        _readyToggle.interactable = false;
+    }
+
+    public void LoadCharacters(List<CharacterResult> characters)
+    {
+        for(int i = 0; i < _characterViews.Count; i++)
+        {
+            _characterViews[i].Init(characters[i]);
+        }
+    }
+
+    private void SelectPickedCharacter(PlayerCharacterView character)
+    {
+        _selectedCharacter = character;
+
+        for (int i = 0; i < _characterViews.Count; i++)
+        {
+            if (_characterViews[i] == character)
+            {
+                if (!_characterViews[i].IsSelected)
+                {
+                    _characterViews[i].SelectView();
+                    SetReadyToggleInteractableState(true);
+                }
+                else
+                {
+                    _characterViews[i].DeselectView();
+                    _selectedCharacter = null;
+                    SetReadyToggleInteractableState(false);
+                }
+            }
+            else
+            {
+                if (_characterViews[i].IsSelected)
+                {
+                    _characterViews[i].DeselectView();
+                }
+            }
+        }
     }
 
     private void ChangeLocalReadyStatus(bool value)
@@ -62,8 +114,8 @@ public class RoomView : MonoBehaviour
     {
         var customParameters = PhotonNetwork.CurrentRoom.CustomProperties;
 
-        customParameters[LobbyManager.READY_STATUS] = value;
-        customParameters[LobbyManager.READY_PLAYER] = _playerName;
+        customParameters[ConstantsForPhoton.READY_STATUS] = value;
+        customParameters[ConstantsForPhoton.READY_PLAYER] = _playerName;
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(customParameters);
     }
@@ -189,11 +241,25 @@ public class RoomView : MonoBehaviour
         }
     }
 
+    private void SetReadyToggleInteractableState(bool isInteractable)
+    {
+        _readyToggle.interactable = isInteractable;
+        if(!isInteractable && _readyToggle.isOn)
+        {
+            _readyToggle.isOn = false;
+        }
+    }
+
     private void OnDestroy()
     {
         _closeRoomButton.onClick.RemoveAllListeners();
         _hideRoomButton.onClick.RemoveAllListeners();
         _startGameButton.onClick.RemoveAllListeners();
         _readyToggle.onValueChanged.RemoveAllListeners();
+
+        for (int i = 0; i < _characterViews.Count; i++)
+        {
+            _characterViews[i].OnClickCharacterView -= SelectPickedCharacter;
+        }
     }
 }

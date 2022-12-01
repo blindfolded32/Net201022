@@ -7,6 +7,7 @@ using Photon.Pun;
 using UnityEngine.UI;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
+using System;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -14,12 +15,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] private CreateRoomView _createRoomView;
     [SerializeField] private RoomView _roomView;
 
-    public const string MAP_PROP_KEY = "map";
-    public const string OWNER = "owner";
-    public const string FRIENDS = "friends";
-    public const string PASSWORD = "password";
-    public const string READY_STATUS = "ready";
-    public const string READY_PLAYER = "ready player";
+    private PlayersCreatorController _charactersCreatorController;
 
 
     private string _playerName;
@@ -40,6 +36,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         _lobbyView.AcceptPasswordButton.onClick.AddListener(CheckPassword);
         _lobbyView.CancelPasswordButton.onClick.AddListener(ClosePasswordPanel);
         _createRoomView.CreateRoomButton.onClick.AddListener(CreateRoom);
+
+        _charactersCreatorController = new PlayersCreatorController(_roomView);
+        _charactersCreatorController.GetPlayerCharacters();
     }
 
     private void ClosePasswordPanel()
@@ -136,14 +135,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             _friendsList = _createRoomView.FriendsList.Split(",");
 
             var customRoomProperties = new Hashtable 
-            { { MAP_PROP_KEY, "Map_3" }, 
-                { OWNER, _playerName },
-                { READY_PLAYER, "" },
-                { READY_STATUS, false }, 
-                { FRIENDS, _friendsList } 
+            { { ConstantsForPhoton.MAP_PROP_KEY, "Map_3" }, 
+                { ConstantsForPhoton.OWNER, _playerName },
+                { ConstantsForPhoton.READY_PLAYER, "" },
+                { ConstantsForPhoton.READY_STATUS, false }, 
+                { ConstantsForPhoton.FRIENDS, _friendsList } 
             };
 
-            var customRoomPropertiesForLobby = new[] { MAP_PROP_KEY, OWNER, READY_PLAYER, READY_STATUS, FRIENDS };
+            var customRoomPropertiesForLobby = new[] { ConstantsForPhoton.MAP_PROP_KEY, ConstantsForPhoton.OWNER,
+                ConstantsForPhoton.READY_PLAYER, ConstantsForPhoton.READY_STATUS, ConstantsForPhoton.FRIENDS };
 
             roomOptions.CustomRoomProperties = customRoomProperties;
             roomOptions.CustomRoomPropertiesForLobby = customRoomPropertiesForLobby;
@@ -152,18 +152,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         else if (_createRoomView.ByPasswordToggle.isOn)
         {
             var password = _createRoomView.Password;
-            var customRoomProperties = new Hashtable { { MAP_PROP_KEY, "Map_3" }, { OWNER, _playerName }, { READY_PLAYER, "" },
-                { READY_STATUS, false }, { PASSWORD, password } };
-            var customRoomPropertiesForLobby = new[] { MAP_PROP_KEY, OWNER, READY_PLAYER, READY_STATUS, PASSWORD };
+            var customRoomProperties = new Hashtable { { ConstantsForPhoton.MAP_PROP_KEY, "Map_3" }, { ConstantsForPhoton.OWNER, _playerName }, { ConstantsForPhoton.READY_PLAYER, "" },
+                { ConstantsForPhoton.READY_STATUS, false }, { ConstantsForPhoton.PASSWORD, password } };
+            var customRoomPropertiesForLobby = new[] { ConstantsForPhoton.MAP_PROP_KEY, ConstantsForPhoton.OWNER,
+                ConstantsForPhoton.READY_PLAYER, ConstantsForPhoton.READY_STATUS, ConstantsForPhoton.PASSWORD };
 
             roomOptions.CustomRoomProperties = customRoomProperties;
             roomOptions.CustomRoomPropertiesForLobby = customRoomPropertiesForLobby;
         }
         else
         {
-            var customRoomProperties = new Hashtable { { MAP_PROP_KEY, "Map_3" }, { READY_PLAYER, "" },
-                { READY_STATUS, false }, { OWNER, _playerName }};
-            var customRoomPropertiesForLobby = new[] { MAP_PROP_KEY, OWNER, READY_PLAYER, READY_STATUS};
+            var customRoomProperties = new Hashtable { { ConstantsForPhoton.MAP_PROP_KEY, "Map_3" }, { ConstantsForPhoton.READY_PLAYER, "" },
+                { ConstantsForPhoton.READY_STATUS, false }, { ConstantsForPhoton.OWNER, _playerName }};
+            var customRoomPropertiesForLobby = new[] { ConstantsForPhoton.MAP_PROP_KEY, ConstantsForPhoton.OWNER, ConstantsForPhoton.READY_PLAYER, ConstantsForPhoton.READY_STATUS };
 
             roomOptions.CustomRoomProperties = customRoomProperties;
             roomOptions.CustomRoomPropertiesForLobby = customRoomPropertiesForLobby;
@@ -256,10 +257,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         (string, bool) readyCartage;
 
-        if(propertiesThatChanged.ContainsKey(LobbyManager.READY_STATUS))
+        if(propertiesThatChanged.ContainsKey(ConstantsForPhoton.READY_STATUS))
         {
-            readyCartage.Item1 = (string)propertiesThatChanged[LobbyManager.READY_PLAYER];
-            readyCartage.Item2 = (bool)propertiesThatChanged[LobbyManager.READY_STATUS];
+            readyCartage.Item1 = (string)propertiesThatChanged[ConstantsForPhoton.READY_PLAYER];
+            readyCartage.Item2 = (bool)propertiesThatChanged[ConstantsForPhoton.READY_STATUS];
 
             _roomView.ChangeGlobalReadyStatus(readyCartage);
         }

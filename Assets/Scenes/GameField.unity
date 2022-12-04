@@ -384,7 +384,10 @@ MonoBehaviour:
   _playerPrefab: {fileID: 3778399898380592865, guid: ad5228038a92e3c4e80e0b7198a2f315, type: 3}
   _playerwShieldPrefab: {fileID: 5326978806284827218, guid: ccd5c155daee3e44382ebc775efb65d2, type: 3}
   _spawnPoints:
-  - {fileID: 762762857}
+  - {fileID: 1259854862}
+  - {fileID: 1346995707}
+  - {fileID: 1589392010}
+  - {fileID: 1671793093}
 --- !u!4 &908077632
 Transform:
   m_ObjectHideFlags: 0

@@ -67,6 +67,7 @@ namespace ProjectData.Scripts
         {
             _health -= damage;
             SendHpParameter(_photonView.ViewID, _health);
+            Debug.Log($"{_photonView.Controller.UserId} health is {_health}");
         }
 
         protected void Attack()
@@ -77,7 +78,6 @@ namespace ProjectData.Scripts
                 if (Input.GetKey(KeyCode.Mouse0) && !_isAttack)
                 {
                     _weapon.transform.rotation = Quaternion.Euler(_attackRotation);
-                    StartShootAnimation();
                     _isAttack = true;
                     SendAttackEvent(_photonView.ViewID);
                 }
@@ -94,9 +94,6 @@ namespace ProjectData.Scripts
         {
             SendDamageEvent(gameObject.GetComponent<PhotonView>().ViewID, _damage);
         }
-
-        protected abstract void StartShootAnimation();
-
         protected void SendAttackEvent(int viewID)
         {
             ReceiverGroup receiverGroup = ReceiverGroup.All;
@@ -109,7 +106,6 @@ namespace ProjectData.Scripts
             };
 
             PhotonNetwork.RaiseEvent((int)GameEvents.Attack, eventContent, options, sendOptions);
-            Debug.Log("SendShootEvent");
         }
 
         protected void SendDamageEvent(int damagedPlayerID, float dmg)
@@ -163,11 +159,6 @@ namespace ProjectData.Scripts
                 case GameEvents.Attack:
 
                     object[] attackEventData = (object[])photonEvent.CustomData;
-
-                    if (_photonView.ViewID == (int)attackEventData[0])
-                    {
-                        StartShootAnimation();
-                    }
                     break;
 
                 case GameEvents.DealDamage:

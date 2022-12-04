@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 5778937024679574369}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,5 +504,5 @@ MonoBehaviour:
   distance: 7
   height: 3
   centerOffset: {x: 0, y: 0, z: 0}
-  followOnStart: 1
+  followOnStart: 0
   smoothSpeed: 0.125

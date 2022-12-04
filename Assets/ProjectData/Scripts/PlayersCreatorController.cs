@@ -3,6 +3,7 @@ using PlayFab;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using ProjectData.Scripts;
 
 public class PlayersCreatorController
 {
@@ -16,10 +17,10 @@ public class PlayersCreatorController
 
     public void GetPlayerCharacters()
     {
-        PlayFabClientAPI.GetAllUsersCharacters(new ListUsersCharactersRequest(), OnGetCharactersSuccess, OnError);
+        PlayFabClientAPI.GetAllUsersCharacters(new ListUsersCharactersRequest(), OnGetPlayersSuccess, OnError);
     }
 
-    private void OnGetCharactersSuccess(ListUsersCharactersResult result)
+    private void OnGetPlayersSuccess(ListUsersCharactersResult result)
     {
         if (result.Characters.Count == 0)
         {
@@ -41,38 +42,38 @@ public class PlayersCreatorController
         {
             foreach (var item in result.Store)
             {
-                GetCharacterToken(item);
+                GetPlayerToken(item);
             }
         }, OnError);
 
     }
 
-    private void GetCharacterToken(StoreItem storeItem)
+    private void GetPlayerToken(StoreItem storeItem)
     {
         PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest
         {
             ItemId = storeItem.ItemId,
-            Price = (int)storeItem.VirtualCurrencyPrices[ConstantsForPlayFab.EXP],
-            VirtualCurrency = ConstantsForPlayFab.EXP
-        }, result => CreateCharacterWhithToken(result.Items[0].ItemId), OnError);
+            Price = (int)storeItem.VirtualCurrencyPrices[ConstantsForPlayFab.GOLD],
+            VirtualCurrency = ConstantsForPlayFab.GOLD
+        }, result => CreatePlayerWithToken(result.Items[0].ItemId), OnError);
     }
 
-    private void CreateCharacterWhithToken(string itemID)
+    private void CreatePlayerWithToken(string itemID)
     {
         PlayFabClientAPI.GrantCharacterToUser(new GrantCharacterToUserRequest
         {
             CharacterName = itemID switch
             {
-                ConstantsForPlayFab.PLAYERSPRITEID => "Shoota Boy",
-                ConstantsForPlayFab.BIGPLAYERSPRITEID => "Bigshoota Boy"
+                ConstantsForPlayFab.PLAYERPREFABID => "PlayerPref",
+                ConstantsForPlayFab.PLAYERWSHIELDID => "PlayerPrefwShield"
             },
             ItemId = itemID
-        }, result => SetNewCharacterStatistics(result), OnError);
+        }, result => SetNewPlayerStatistics(result), OnError);
     }
 
-    private void SetNewCharacterStatistics(GrantCharacterToUserResult result)
+    private void SetNewPlayerStatistics(GrantCharacterToUserResult result)
     {
-        PlayFabClientAPI.UpdateCharacterStatistics(new UpdateCharacterStatisticsRequest
+        PlayFabClientAPI.UpdatePlayerStatistics(new UpdateCharacterStatisticsRequest
         {
             CharacterId = result.CharacterId,
             CharacterStatistics = new Dictionary<string, int>
@@ -80,8 +81,8 @@ public class PlayersCreatorController
                 [ConstantsForPlayFab.PLAYERHEALTH] = 100,
                 [ConstantsForPlayFab.PLAYERDAMAGE] = result.CharacterType switch
                 {
-                    ConstantsForPlayFab.PLAYERSPRITEID => 20,
-                    ConstantsForPlayFab.BIGPLAYERSPRITEID => 50
+                    ConstantsForPlayFab.PLAYERPREFABID => 1,
+                    ConstantsForPlayFab.PLAYERWSHIELDID => 1
                 }
             }
         }, result => Debug.Log($"Initial stats set"), OnError); ;

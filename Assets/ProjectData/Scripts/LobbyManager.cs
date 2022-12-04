@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 using System;
+using ProjectData.Scripts;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -85,10 +86,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         var accountInfo = result.AccountInfo;
         _playerID = accountInfo.PlayFabId;
-        _playerName = accountInfo.Username;
 
-        _lobbyView.AccauntInfo.text = $"Hi! {_playerName} \n" +
-                           $"{_playerID} \n";
+        _playerName = accountInfo.Username ?? $"user{_playerID}";
+
+        _lobbyView.AccauntInfo.text = $"Hello {_playerName} \n" +
+                                      $"Your ID is {_playerID} \n";
     }
 
     private void OnGetCatalogSuccess(GetCatalogItemsResult result)
@@ -242,7 +244,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-        _roomView.OnNewPlayerEntredInRoom(newPlayer);
+        _roomView.OnNewPlayerEnteredRoom(newPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)

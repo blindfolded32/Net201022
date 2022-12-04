@@ -20,7 +20,7 @@ public class PlayerCharacterView : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Color _selectedColor;
     [SerializeField] private Color _normalColor;
     [SerializeField] private Sprite _playerSprite;
-    [SerializeField] private Sprite _bigPlayerSprite;
+    [SerializeField] private Sprite _playerwithshieldSprite;
 
     private Color _idleColor;
     private CharacterResult _characterResult;
@@ -37,8 +37,8 @@ public class PlayerCharacterView : MonoBehaviour, IPointerClickHandler
 
         _classImage.sprite = characterResult.CharacterType switch
         {
-            ConstantsForPlayFab.PLAYERSPRITEID => _playerSprite,
-            ConstantsForPlayFab.BIGPLAYERSPRITEID => _bigPlayerSprite
+            ConstantsForPlayFab.PLAYERPREFABID => _playerSprite,
+            ConstantsForPlayFab.PLAYERWSHIELDID => _playerwithshieldSprite
         };
 
         PlayFabClientAPI.GetCharacterStatistics(new GetCharacterStatisticsRequest

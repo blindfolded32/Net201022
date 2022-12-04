@@ -618,5 +618,5 @@ MonoBehaviour:
   _backGroundImage: {fileID: 5914840403147152892}
   _selectedColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0}
   _normalColor: {r: 0.8773585, g: 0.07863116, b: 0.07863116, a: 0}
-  _playerSprite: {fileID: 21300000, guid: bb24ab963e49a3b49abfdcb7641db1cc, type: 3}
-  _bigPlayerSprite: {fileID: 21300000, guid: f403ac9ae2010404db2b82d09418e184, type: 3}
+  _playerSprite: {fileID: 21300000, guid: 0db727918ea0a6f43a5bd13272c75598, type: 3}
+  _playerwithshieldSprite: {fileID: 21300000, guid: f403ac9ae2010404db2b82d09418e184, type: 3}

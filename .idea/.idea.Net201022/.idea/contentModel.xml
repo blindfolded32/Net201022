@@ -572,10 +572,13 @@
             <e p="ConstantsForPlayFab.cs" t="Include" />
             <e p="CreateAccountWindow.cs" t="Include" />
             <e p="CreateRoomView.cs" t="Include" />
+            <e p="GameEvents.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
             <e p="GameStartWindow.cs" t="Include" />
             <e p="LobbyManager.cs" t="Include" />
             <e p="LobbyView.cs" t="Include" />
             <e p="PlayerCharacterView.cs" t="Include" />
+            <e p="PlayerController.cs" t="Include" />
             <e p="PlayersCreatorController.cs" t="Include" />
             <e p="PlayerSlotView.cs" t="Include" />
             <e p="PlayFabAccountManager.cs" t="Include" />
@@ -583,6 +586,7 @@
             <e p="RoomTypes.cs" t="Include" />
             <e p="RoomView.cs" t="Include" />
             <e p="SingInWindow.cs" t="Include" />
+            <e p="StandartPlayer.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
